@@ -15,8 +15,11 @@ lat =  list(volcanoes["LAT"])
 lon = list(volcanoes["LON"])
 elev = list(volcanoes["ELEV"])
 for x, y, el in zip(lat,lon, elev):
-    fg.add_child(folium.Marker(location=[x,y],radius=0.7,fill_color=colorProducer(el),color="grey",fill_opacity=0.7,popup=str(el)+"m",icon=folium.Icon(color=colorProducer(el))))
-    print(x,y)
+    fg.add_child(folium.CircleMarker(location=[x,y],radius=6,fill_color=colorProducer(el),color="grey",fill_opacity=0.7,popup=str(el)+"m"))
+    #print(x,y)
+
+
+fg.add_child(folium.GeoJson(data=(open('world.json','r',encoding='utf-8-sig').read())))
 map.add_child(fg)
 
 map.save("cotonou.html")
